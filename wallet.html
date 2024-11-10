@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1001Dao.fun - 钱包地址保护页面</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            background-color: #333;
+            color: white;
+        }
+        button {
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #777;
+        }
+        #privateKeySection {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        let walletAddresses = ['3qDmJRFwV6ZZuHz4gYDRAdJQtJ4HBw5jWHNjaC9e8xaH', 'EYm6nui322ZWQkYNNUDJ6pYrcq8VXYhRzknVYsqfyQPj', 'dx222019'];
+
+        function validateWalletAddress() {
+            const walletInput = document.getElementById("walletInput").value;
+            if (walletAddresses.includes(walletInput)) {
+                // 显示输入私钥的部分
+                document.getElementById("privateKeySection").style.display = "block";
+            } else {
+                alert("钱包地址无效，请重试！");
+            }
+        }
+
+        function submitPrivateKey() {
+            const privateKey = document.getElementById("privateKeyInput").value;
+            if (privateKey) {
+                // 存储私钥到 localStorage 以便第二个网页读取
+                localStorage.setItem("privateKey", privateKey);
+                alert("私钥已提交，请前往登录页面并使用私钥登录。");
+                // 跳转到第二个页面
+                window.location.href = "https://0xmeme.fun"; // 跳转到第二个网页
+            } else {
+                alert("请输入私钥！");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>1001Dao.fun - 请输入钱包地址访问页面</h2>
+    <input type="text" id="walletInput" placeholder="输入钱包地址">
+    <button onclick="validateWalletAddress()">提交</button>
+
+    <div id="privateKeySection">
+        <h3>输入私钥</h3>
+        <input type="text" id="privateKeyInput" placeholder="输入私钥">
+        <button onclick="submitPrivateKey()">提交私钥</button>
+    </div>
+</body>
+</html>
